@@ -57,7 +57,8 @@ class composer(
   $wget_package    = $composer::params::wget_package,
   $composer_home   = $composer::params::composer_home,
   $php_bin         = $composer::params::php_bin,
-  $suhosin_enabled = $composer::params::suhosin_enabled
+  $suhosin_enabled = $composer::params::suhosin_enabled,
+  $manage_method_package = $composer::params::manage_method_package
 ) inherits composer::params {
 
   Exec { path => "/bin:/usr/bin/:/sbin:/usr/sbin:${target_dir}" }
@@ -89,7 +90,7 @@ class composer(
     }
   }
 
-  if defined(Package[$method_package]) == false {
+  if $manage_method_package == true and defined(Package[$method_package]) == false {
     package { $method_package: ensure => present, }
   }
 

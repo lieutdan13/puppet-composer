@@ -33,6 +33,7 @@ class composer::params {
       $wget_package    = 'wget'
       $php_bin         = 'php'
       $suhosin_enabled = true
+      $manage_method_package = true
     }
     'RedHat', 'Centos': {
       $target_dir      = '/usr/local/bin'
@@ -45,6 +46,7 @@ class composer::params {
       $wget_package    = 'wget'
       $php_bin         = 'php'
       $suhosin_enabled = true
+      $manage_method_package = true
     }
     default: {
       fail("Unsupported platform: ${family}")
